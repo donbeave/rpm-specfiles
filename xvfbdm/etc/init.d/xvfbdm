@@ -29,7 +29,7 @@
 PROG="/usr/bin/Xvfb"
 #PROG_OPTIONS=":5 -screen 0 640x480x24 -fbdir /usr/tmp"
 PROG_OPTIONS=":7 -ac -screen 0 1024x768x24"
-PROG_OUTPUT="/tmp/Xvfb.out"
+PROG_OUTPUT="/var/log/xvfbdm/Xvfb.out"
 
 XVFB_PID="/var/run/Xvfb.pid"
 
