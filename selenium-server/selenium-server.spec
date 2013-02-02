@@ -25,9 +25,16 @@ mv selenium-server-standalone-%{version}.jar %{buildroot}/%{_datadir}/selenium/l
 cd %{buildroot}/%{_datadir}/selenium/lib
 ln -s selenium-server-standalone-%{version}.jar selenium-server-standalone.jar
 
+mkdir -p %{buildroot}/etc/init.d
+cd %{buildroot}/etc/init.d
+wget https://raw.github.com/donbeave/rpm-specfiles/master/selenium-server/etc/init.d/selenium --no-check-certificate
+mkdir -p %{buildroot}/var/log/selenium/
+
 %files
 %defattr(-,root,root)
+/etc/init.d
 %{_datadir}/selenium/lib
+/var/log/selenium/
 
 %changelog
 * Sat Feb 02 2012 Zhokhov Alexey <donbeave@gmail.com> - 2.29.0-1
