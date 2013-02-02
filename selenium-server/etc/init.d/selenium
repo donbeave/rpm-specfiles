@@ -1,0 +1,80 @@
+#!/bin/bash
+#
+# /etc/rc.d/init.d/selenium
+#
+# selenium - Startup script for Selenium Server
+#
+# chkconfig: 346 96 29
+# description: Starts/Stops Selenium Standalone Server
+# pidfile: /var/run/selenium.pid
+
+. /etc/init.d/functions
+
+PORT=4444
+JAR_FILE="/usr/local/lib/selenium/selenium-server-standalone.jar"
+
+FIREFOX_BIN="/usr/lib64/firefox/firefox"
+if [! -f $FIREFOX_BIN ];
+then
+   FIREFOX_BIN="/usr/lib/firefox/firefox"
+fi
+
+NODES="-browser browserName=firefox,firefox_binary=$FIREFOX_BIN,maxInstances=5,platform=LINUX"
+
+SELENIUM_PID="/var/run/selenium.pid"
+
+case "$1" in
+    start)
+        echo -n "Starting selenium:"
+        if test -f $SELENIUM_PID
+        then
+            # already running
+            echo_failure
+        else
+            DISPLAY=:7 java -jar $JAR_FILE -port $PORT $NODES > /var/log/selenium/selenium-output.log 2> /var/log/selenium/selenium-error.log & echo $! > $SELENIUM_PID
+
+            error=$?
+            if test $error -gt 0
+            then
+                echo_failure
+                echo "${bon}Error $error! Couldn't start Selenium!${boff}"
+            else
+                echo_success
+            fi
+        fi
+        echo
+        ;;
+    stop)
+        echo -n "Stopping selenium:"
+        if test -f $SELENIUM_PID
+        then
+            PID=`cat $SELENIUM_PID`
+            kill -3 $PID
+            if kill -9 $PID ;
+                then
+                    sleep 2
+                    test -f $SELENIUM_PID && rm -f $SELENIUM_PID
+                    echo_success
+                else
+                    echo_failure
+                fi
+        else
+            echo_failure
+        fi
+        echo
+        ;;
+    restart|reload)
+        $0 stop
+        $0 start
+        RETVAL=$?
+      	;;
+    status)
+        status selenium
+        RETVAL=$?
+    	;;
+    *)
+     echo $"Usage: $0 (start|stop|restart|reload|status)"
+     exit 1
+esac
+
+exit $RETVAL
