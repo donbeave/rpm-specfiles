@@ -7,7 +7,7 @@ Release:            1
 License:            ASL 2.0
 Group:              Development/Tools
 URL:                http://www.seleniumhq.org
-Requires:           firefox,xorg-x11-server-Xvfb
+Requires:           firefox,xvfbdm
 BuildArch:          noarch
 Buildroot:          %{_tmppath}/%{name}-buildroot
 Packager:           Zhokhov Alexey <donbeave@gmail.com>
