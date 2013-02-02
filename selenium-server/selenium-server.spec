@@ -1,3 +1,5 @@
+%global             daemon selenium
+
 Summary:            Selenium Server (formerly the Selenium RC Server)
 Name:               selenium-server
 Version:            2.29.0
@@ -20,21 +22,22 @@ if [ ! -f selenium-server-standalone-%{version}.jar ];
 then
     wget http://selenium.googlecode.com/files/selenium-server-standalone-%{version}.jar
 fi
-mkdir -p %{buildroot}/%{_datadir}/selenium/lib
-mv selenium-server-standalone-%{version}.jar %{buildroot}/%{_datadir}/selenium/lib
-cd %{buildroot}/%{_datadir}/selenium/lib
-ln -s selenium-server-standalone-%{version}.jar selenium-server-standalone.jar
+%{__mkdir_p} %{buildroot}/%{_datadir}/selenium/lib
+install -p -D -m 644 selenium-server-standalone-%{version}.jar %{buildroot}/%{_datadir}/selenium/lib
 
-mkdir -p %{buildroot}/etc/init.d
-cd %{buildroot}/etc/init.d
 wget https://raw.github.com/donbeave/rpm-specfiles/master/selenium-server/etc/init.d/selenium --no-check-certificate
-mkdir -p %{buildroot}/var/log/selenium/
+install -p -D -m 755 selenium %{buildroot}%{_initddir}/%{daemon}
+
+%{__mkdir_p} %{buildroot}/%{_localstatedir}/log/selenium
+
+cd %{buildroot}/%{_datadir}/selenium/lib
+%{__ln_s} selenium-server-standalone-%{version}.jar selenium-server-standalone.jar
 
 %files
 %defattr(-,root,root)
-/etc/init.d
+%{_initddir}/%{daemon}
 %{_datadir}/selenium/lib
-/var/log/selenium/
+%{_localstatedir}/log/selenium
 
 %changelog
 * Sat Feb 02 2012 Zhokhov Alexey <donbeave@gmail.com> - 2.29.0-1

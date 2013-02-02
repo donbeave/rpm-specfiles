@@ -14,9 +14,10 @@ PORT=4444
 JAR_FILE="/usr/share/selenium/lib/selenium-server-standalone.jar"
 
 FIREFOX_BIN="/usr/lib64/firefox/firefox"
-if [! -f $FIREFOX_BIN ];
+
+if [ ! -f $FIREFOX_BIN ];
 then
-   FIREFOX_BIN="/usr/lib/firefox/firefox"
+    FIREFOX_BIN="/usr/lib/firefox/firefox"
 fi
 
 NODES="-browser browserName=firefox,firefox_binary=$FIREFOX_BIN,maxInstances=5,platform=LINUX"
