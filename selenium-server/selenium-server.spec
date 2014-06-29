@@ -3,7 +3,7 @@
 Summary:            Selenium Server (formerly the Selenium RC Server)
 Name:               selenium-server
 Version:            2.29.0
-Release:            1
+Release:            1.polusharie
 License:            ASL 2.0
 Group:              Development/Tools
 URL:                http://www.seleniumhq.org

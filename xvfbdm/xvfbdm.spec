@@ -3,7 +3,7 @@
 Summary:            A X Windows System virtual framebuffer X server.
 Name:               xvfbdm
 Version:            1.10
-Release:            1
+Release:            1.polusharie
 License:            MIT and GPLv2
 Group:              Development/Tools
 URL:                http://www.x.org

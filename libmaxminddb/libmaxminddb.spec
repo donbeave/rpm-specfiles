@@ -6,7 +6,7 @@
 Summary:	Library for working with MaxMind DB files
 Name:		libmaxminddb
 Version:	0.5.5
-Release:	1
+Release:	1.polusharie
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://github.com/maxmind/libmaxminddb/releases/download/%{version}/%{name}-%{version}.tar.gz
