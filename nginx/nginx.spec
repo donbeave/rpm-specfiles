@@ -60,6 +60,7 @@ Source6: nginx.vh.example_ssl.conf
 Source7: nginx.suse.init
 Source8: nginx.service
 Source9: nginx.upgrade.sh
+Source10: ngx_http_geoip2_module-0.1.tar.gz
 
 License: 2-clause BSD-like license
 
@@ -82,6 +83,7 @@ Not stripped version of nginx built with the debugging log support.
 
 %prep
 %setup -q
+%setup -D -T -b 10
 
 %build
 ./configure \
@@ -118,6 +120,7 @@ Not stripped version of nginx built with the debugging log support.
         --with-ipv6 \
         --with-debug \
         %{?with_spdy:--with-http_spdy_module} \
+        --add-module=../ngx_http_geoip2_module-0.1 \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \
         $*
 make %{?_smp_mflags}
@@ -155,6 +158,7 @@ make %{?_smp_mflags}
         --with-mail_ssl_module \
         --with-file-aio \
         --with-ipv6 \
+        --add-module=../ngx_http_geoip2_module-0.1 \
         %{?with_spdy:--with-http_spdy_module} \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \
         $*
