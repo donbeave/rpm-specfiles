@@ -2,6 +2,7 @@
 %define nginx_home %{_localstatedir}/cache/nginx
 %define nginx_user nginx
 %define nginx_group nginx
+%bcond_with replace_filter
 
 # distribution specific definitions
 %define use_systemd (0%{?fedora} && 0%{?fedora} >= 18) || (0%{?rhel} && 0%{?rhel} >= 7)
@@ -46,7 +47,7 @@ Requires(pre): pwdutils
 Summary: High performance web server
 Name: nginx
 Version: 1.6.0
-Release: 2%{?dist}.polusharie
+Release: 3%{?dist}.polusharie
 Vendor: nginx inc.
 URL: http://nginx.org/
 
@@ -62,6 +63,7 @@ Source8: nginx.service
 Source9: nginx.upgrade.sh
 Source10: ngx_http_geoip2_module-0.1.tar.gz
 Source11: ngx_replace_filter_module-0.01rc5.tar.gz
+Source12: ngx_http_substitutions_filter_module-0.6.4.tar.gz
 
 License: 2-clause BSD-like license
 
@@ -86,6 +88,7 @@ Not stripped version of nginx built with the debugging log support.
 %setup -q
 %setup -D -T -b 10
 %setup -D -T -b 11
+%setup -D -T -b 12
 
 %build
 ./configure \
@@ -123,7 +126,8 @@ Not stripped version of nginx built with the debugging log support.
         --with-debug \
         %{?with_spdy:--with-http_spdy_module} \
         --add-module=../ngx_http_geoip2_module-0.1 \
-        --add-module=../replace-filter-nginx-module-0.01rc5 \
+        %{?with_replace_filter:--add-module=../replace-filter-nginx-module-0.01rc5} \
+        --add-module=../ngx_http_substitutions_filter_module-0.6.4 \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \
         $*
 make %{?_smp_mflags}
@@ -162,7 +166,8 @@ make %{?_smp_mflags}
         --with-file-aio \
         --with-ipv6 \
         --add-module=../ngx_http_geoip2_module-0.1 \
-        --add-module=../replace-filter-nginx-module-0.01rc5 \
+        %{?with_replace_filter:--add-module=../replace-filter-nginx-module-0.01rc5} \
+        --add-module=../ngx_http_substitutions_filter_module-0.6.4 \
         %{?with_spdy:--with-http_spdy_module} \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \
         $*

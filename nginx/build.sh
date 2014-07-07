@@ -14,4 +14,9 @@ if [ ! -f ~/rpmbuild/SOURCES/$pack ];
 then
     wget "https://github.com/openresty/replace-filter-nginx-module/archive/v0.01rc5.tar.gz" -O ~/rpmbuild/SOURCES/$pack
 fi
+pack="ngx_http_substitutions_filter_module-0.6.4.tar.gz"
+if [ ! -f ~/rpmbuild/SOURCES/$pack ];
+then
+    wget "https://github.com/yaoweibin/ngx_http_substitutions_filter_module/archive/v0.6.4.tar.gz" -O ~/rpmbuild/SOURCES/$pack
+fi
 RELEASE=`date +"%Y%m%d"` rpmbuild -ba nginx.spec
