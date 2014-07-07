@@ -61,6 +61,7 @@ Source7: nginx.suse.init
 Source8: nginx.service
 Source9: nginx.upgrade.sh
 Source10: ngx_http_geoip2_module-0.1.tar.gz
+Source11: ngx_replace_filter_module-0.01rc5.tar.gz
 
 License: 2-clause BSD-like license
 
@@ -84,6 +85,7 @@ Not stripped version of nginx built with the debugging log support.
 %prep
 %setup -q
 %setup -D -T -b 10
+%setup -D -T -b 11
 
 %build
 ./configure \
@@ -121,6 +123,7 @@ Not stripped version of nginx built with the debugging log support.
         --with-debug \
         %{?with_spdy:--with-http_spdy_module} \
         --add-module=../ngx_http_geoip2_module-0.1 \
+        --add-module=../replace-filter-nginx-module-0.01rc5 \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \
         $*
 make %{?_smp_mflags}
@@ -159,6 +162,7 @@ make %{?_smp_mflags}
         --with-file-aio \
         --with-ipv6 \
         --add-module=../ngx_http_geoip2_module-0.1 \
+        --add-module=../replace-filter-nginx-module-0.01rc5 \
         %{?with_spdy:--with-http_spdy_module} \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \
         $*

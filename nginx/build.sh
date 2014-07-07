@@ -9,4 +9,9 @@ if [ ! -f ~/rpmbuild/SOURCES/$pack ];
 then
     wget "https://github.com/leev/ngx_http_geoip2_module/archive/0.1.tar.gz" -O ~/rpmbuild/SOURCES/$pack
 fi
+pack="ngx_replace_filter_module-0.01rc5.tar.gz"
+if [ ! -f ~/rpmbuild/SOURCES/$pack ];
+then
+    wget "https://github.com/openresty/replace-filter-nginx-module/archive/v0.01rc5.tar.gz" -O ~/rpmbuild/SOURCES/$pack
+fi
 RELEASE=`date +"%Y%m%d"` rpmbuild -ba nginx.spec
