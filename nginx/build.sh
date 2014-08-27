@@ -1,4 +1,4 @@
-pack="nginx-1.6.0.tar.gz"
+pack="nginx-1.6.1.tar.gz"
 if [ ! -f ~/rpmbuild/SOURCES/$pack ];
 then
     wget "http://nginx.org/download/$pack" -O ~/rpmbuild/SOURCES/$pack
