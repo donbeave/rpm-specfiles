@@ -2,7 +2,6 @@
 %define nginx_home %{_localstatedir}/cache/nginx
 %define nginx_user nginx
 %define nginx_group nginx
-%bcond_with replace_filter
 
 # distribution specific definitions
 %define use_systemd (0%{?fedora} && 0%{?fedora} >= 18) || (0%{?rhel} && 0%{?rhel} >= 7)
@@ -46,8 +45,8 @@ Requires(pre): pwdutils
 
 Summary: High performance web server
 Name: nginx
-Version: 1.6.0
-Release: 3%{?dist}.polusharie
+Version: 1.6.1
+Release: 1%{?dist}.ngx
 Vendor: nginx inc.
 URL: http://nginx.org/
 
@@ -86,9 +85,6 @@ Not stripped version of nginx built with the debugging log support.
 
 %prep
 %setup -q
-%setup -D -T -b 10
-%setup -D -T -b 11
-%setup -D -T -b 12
 
 %build
 ./configure \
@@ -339,6 +335,12 @@ if [ $1 -ge 1 ]; then
 fi
 
 %changelog
+* Thu Aug  5 2014 Sergey Budnevitch <sb@nginx.com>
+- 1.6.1
+
+* Thu Jul 12 2014 Sergey Budnevitch <sb@nginx.com>
+- incorrect sysconfig filename finding in the initscript fixed
+
 * Thu Apr 24 2014 Konstantin Pavlov <thresh@nginx.com>
 - 1.6.0
 - http-auth-request module added
