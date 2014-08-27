@@ -2,6 +2,7 @@
 %define nginx_home %{_localstatedir}/cache/nginx
 %define nginx_user nginx
 %define nginx_group nginx
+%bcond_with replace_filter
 
 # distribution specific definitions
 %define use_systemd (0%{?fedora} && 0%{?fedora} >= 18) || (0%{?rhel} && 0%{?rhel} >= 7)
@@ -46,7 +47,7 @@ Requires(pre): pwdutils
 Summary: High performance web server
 Name: nginx
 Version: 1.6.1
-Release: 1%{?dist}.ngx
+Release: 1%{?dist}.polusharie
 Vendor: nginx inc.
 URL: http://nginx.org/
 
@@ -85,6 +86,9 @@ Not stripped version of nginx built with the debugging log support.
 
 %prep
 %setup -q
+%setup -D -T -b 10
+%setup -D -T -b 11
+%setup -D -T -b 12
 
 %build
 ./configure \
