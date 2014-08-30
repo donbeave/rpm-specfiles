@@ -5,8 +5,8 @@
 
 Summary:	Library for working with MaxMind DB files
 Name:		libmaxminddb
-Version:	0.5.5
-Release:	1.polusharie
+Version:	0.5.6
+Release:	1%{?dist}.polusharie
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://github.com/maxmind/libmaxminddb/releases/download/%{version}/%{name}-%{version}.tar.gz
@@ -86,6 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libmaxminddb.la
 %{_mandir}/man3/MMDB_*.3.*
 %{_mandir}/man3/libmaxminddb.3.*
+%{_mandir}/man1/mmdblookup.1.gz
 
 %if %{with static_libs}
 %files static
