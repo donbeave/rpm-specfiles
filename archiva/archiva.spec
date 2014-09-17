@@ -15,7 +15,7 @@
 
 Summary:        The Build Artifact Repository Manager
 Name:           archiva
-Version:        2.1.0
+Version:        2.1.1
 Release:        1%{?dist}.polusharie
 Vendor:         Apache Software Foundation
 URL:            http://archiva.apache.org
