@@ -33,6 +33,7 @@ Requires: systemd
 Requires: openssl >= 1.0.1
 BuildRequires: systemd
 BuildRequires: openssl-devel >= 1.0.1
+Epoch: 1
 %define with_spdy 1
 %endif
 
@@ -46,7 +47,7 @@ Requires(pre): pwdutils
 
 Summary: High performance web server
 Name: nginx
-Version: 1.6.1
+Version: 1.6.2
 Release: 1%{?dist}.polusharie
 Vendor: nginx inc.
 URL: http://nginx.org/
@@ -165,10 +166,10 @@ make %{?_smp_mflags}
         --with-mail_ssl_module \
         --with-file-aio \
         --with-ipv6 \
+        %{?with_spdy:--with-http_spdy_module} \
         --add-module=../ngx_http_geoip2_module-0.1 \
         %{?with_replace_filter:--add-module=../replace-filter-nginx-module-0.01rc5} \
         --add-module=../ngx_http_substitutions_filter_module-0.6.4 \
-        %{?with_spdy:--with-http_spdy_module} \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \
         $*
 make %{?_smp_mflags}
@@ -339,6 +340,10 @@ if [ $1 -ge 1 ]; then
 fi
 
 %changelog
+* Tue Sep 16 2014 Sergey Budnevitch <sb@nginx.com>
+- epoch added to the EPEL7/CentOS7 spec to override EPEL one
+- 1.6.2
+
 * Thu Aug  5 2014 Sergey Budnevitch <sb@nginx.com>
 - 1.6.1
 
