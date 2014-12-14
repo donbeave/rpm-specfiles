@@ -62,7 +62,7 @@ Source6: nginx.vh.example_ssl.conf
 Source7: nginx.suse.init
 Source8: nginx.service
 Source9: nginx.upgrade.sh
-Source10: ngx_http_geoip2_module-0.1.tar.gz
+Source10: ngx_http_geoip2_module-1.0.tar.gz
 Source11: ngx_replace_filter_module-0.01rc5.tar.gz
 Source12: ngx_http_substitutions_filter_module-0.6.4.tar.gz
 
@@ -126,7 +126,7 @@ Not stripped version of nginx built with the debugging log support.
         --with-ipv6 \
         --with-debug \
         %{?with_spdy:--with-http_spdy_module} \
-        --add-module=../ngx_http_geoip2_module-0.1 \
+        --add-module=../ngx_http_geoip2_module-1.0 \
         %{?with_replace_filter:--add-module=../replace-filter-nginx-module-0.01rc5} \
         --add-module=../ngx_http_substitutions_filter_module-0.6.4 \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \
@@ -167,7 +167,7 @@ make %{?_smp_mflags}
         --with-file-aio \
         --with-ipv6 \
         %{?with_spdy:--with-http_spdy_module} \
-        --add-module=../ngx_http_geoip2_module-0.1 \
+        --add-module=../ngx_http_geoip2_module-1.0 \
         %{?with_replace_filter:--add-module=../replace-filter-nginx-module-0.01rc5} \
         --add-module=../ngx_http_substitutions_filter_module-0.6.4 \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \

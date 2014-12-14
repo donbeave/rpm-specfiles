@@ -4,10 +4,10 @@ then
     wget "http://nginx.org/download/$pack" -O ~/rpmbuild/SOURCES/$pack
 fi
 cp sources/* ~/rpmbuild/SOURCES/
-pack="ngx_http_geoip2_module-0.1.tar.gz"
+pack="ngx_http_geoip2_module-1.0.tar.gz"
 if [ ! -f ~/rpmbuild/SOURCES/$pack ];
 then
-    wget "https://github.com/leev/ngx_http_geoip2_module/archive/0.1.tar.gz" -O ~/rpmbuild/SOURCES/$pack
+    wget "https://github.com/leev/ngx_http_geoip2_module/archive/1.0.tar.gz" -O ~/rpmbuild/SOURCES/$pack
 fi
 pack="ngx_replace_filter_module-0.01rc5.tar.gz"
 if [ ! -f ~/rpmbuild/SOURCES/$pack ];
