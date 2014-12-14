@@ -65,6 +65,8 @@ Source9: nginx.upgrade.sh
 Source10: ngx_http_geoip2_module-1.0.tar.gz
 Source11: ngx_replace_filter_module-0.01rc5.tar.gz
 Source12: ngx_http_substitutions_filter_module-0.6.4.tar.gz
+Source13: ngx_pagespeed-1.9.32.2-beta.tar.gz
+Source14: psol-1.9.32.2.tar.gz
 
 License: 2-clause BSD-like license
 
@@ -90,6 +92,9 @@ Not stripped version of nginx built with the debugging log support.
 %setup -D -T -b 10
 %setup -D -T -b 11
 %setup -D -T -b 12
+%setup -D -T -b 13
+%setup -D -T -b 14
+%{__mv} %{_builddir}/psol %{_builddir}/ngx_pagespeed-release-1.9.32.2-beta/
 
 %build
 ./configure \
@@ -129,6 +134,7 @@ Not stripped version of nginx built with the debugging log support.
         --add-module=../ngx_http_geoip2_module-1.0 \
         %{?with_replace_filter:--add-module=../replace-filter-nginx-module-0.01rc5} \
         --add-module=../ngx_http_substitutions_filter_module-0.6.4 \
+        --add-module=../ngx_pagespeed-release-1.9.32.2-beta \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \
         $*
 make %{?_smp_mflags}
@@ -170,6 +176,7 @@ make %{?_smp_mflags}
         --add-module=../ngx_http_geoip2_module-1.0 \
         %{?with_replace_filter:--add-module=../replace-filter-nginx-module-0.01rc5} \
         --add-module=../ngx_http_substitutions_filter_module-0.6.4 \
+        --add-module=../ngx_pagespeed-release-1.9.32.2-beta \
         --with-cc-opt="%{optflags} $(pcre-config --cflags)" \
         $*
 make %{?_smp_mflags}

@@ -9,6 +9,16 @@ if [ ! -f ~/rpmbuild/SOURCES/$pack ];
 then
     wget "https://github.com/leev/ngx_http_geoip2_module/archive/1.0.tar.gz" -O ~/rpmbuild/SOURCES/$pack
 fi
+pack="ngx_pagespeed-1.9.32.2-beta.tar.gz"
+if [ ! -f ~/rpmbuild/SOURCES/$pack ];
+then
+    wget "https://github.com/pagespeed/ngx_pagespeed/archive/release-1.9.32.2-beta.zip" -O ~/rpmbuild/SOURCES/$pack
+fi
+pack="psol-1.9.32.2.tar.gz"
+if [ ! -f ~/rpmbuild/SOURCES/$pack ];
+then
+    wget "https://dl.google.com/dl/page-speed/psol/1.9.32.2.tar.gz" -O ~/rpmbuild/SOURCES/$pack
+fi
 pack="ngx_replace_filter_module-0.01rc5.tar.gz"
 if [ ! -f ~/rpmbuild/SOURCES/$pack ];
 then
